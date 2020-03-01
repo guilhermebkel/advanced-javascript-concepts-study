@@ -4,6 +4,7 @@
 ## Summary
 
 - [ How the browser understands javascript code ](#how-the-browser-understands-javascript)
+- [ Stack and Heap Memory ](#stack-and-heap-memory)
 
 <a name="javascript-foundation"></a>
 
@@ -28,3 +29,37 @@ After the step above, the following ones happen at the same time:
 
 So, with the steps above (called JIT Compiler - Just In Time Compiler), the code gets executed on the fly while making needed optimizations to improve the application speed.
 
+<a name="stack-and-heap-memory"></a>
+
+## Stack and Heap Memory
+
+The common declarations below will be done with **Stack Memory**:
+```js
+// declaring numbers and strings
+const x = 1;
+const y = "mota";
+
+// calling a function in the simple way
+function something() {
+	console.log("something");
+};
+something();
+```
+
+And the following ones will be done with **Heap Memory**:
+```js
+// object declaration
+const user = {
+	name: "mota"
+};
+
+// using the 'new' keyword to call a function
+function userName(userName) {
+	this.userName = userName;
+};
+new storeUser("mota");
+
+// using the 'new' keyword to call a class
+class UserLastName {};
+new UserLastName();
+```
