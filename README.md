@@ -57,7 +57,7 @@ const user = {
 function userName(userName) {
 	this.userName = userName;
 };
-new storeUser("mota");
+new userName("mota");
 
 // using the 'new' keyword to call a class
 class UserLastName {};
