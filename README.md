@@ -9,9 +9,7 @@
 
 ## How the browser understands javascript code
 
-As most known, javascript is a interpreted language, so it is not compiled into machine language before going to production.
-
-What really happens is that there is a **Engine** which is capable of making some work to make the javascript code to be compiled to machine code during its execution and so interpreted by processor dynamically.
+There is a **Engine** which is capable of making some work to make the javascript code to be compiled into machine code during its execution and so interpreted dynamically.
 
 Every browser has its own engine, today the most famous is called **V8 Engine** and it is used by Google Chrome and new versions of Internet Explorer.
 
