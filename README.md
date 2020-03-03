@@ -5,6 +5,8 @@
 
 - [ How the browser understands javascript code ](#how-the-browser-understands-javascript)
 - [ Stack and Heap Memory ](#stack-and-heap-memory)
+- [ Garbage collection ](#garbage-collection)
+- [ Main causes of memory leak ](#main-causes-of-memory-leak)
 
 <a name="javascript-foundation"></a>
 
@@ -63,3 +65,32 @@ new userName("mota");
 class UserLastName {};
 new UserLastName();
 ```
+
+<a name="garbage-collection"></a>
+
+## Garbage collection
+In Javascript, the garbage collection occurs automatically (since it is a manual job on another languages like C).
+
+Basically, the garbage collector works on variables that are not pointing to any memory space, per example:
+
+```js
+var user = {
+	name: "Mota",
+	lastName: "Bromonschenkel"
+}
+
+user = 1
+
+// The garbage collector will clear the last value and keep the new one
+```
+
+<a name="main-causes-of-memory-leak"></a>
+
+## Main causes of memory leak
+
+A memory leak occurs when we start using some space in memory and it doesn't get back to us with the garbage collector help.
+
+In generally there are mainly causes of memory leak, per example:
+- Global variables
+- Event listeners
+- setInterval functions
