@@ -7,6 +7,7 @@
 - [ Stack and Heap Memory ](#stack-and-heap-memory)
 - [ Garbage collection ](#garbage-collection)
 - [ Main causes of memory leak ](#main-causes-of-memory-leak)
+- [ Javascript runtime ](#javascript-runtime)
 
 <a name="javascript-foundation"></a>
 
@@ -94,3 +95,26 @@ In generally there are mainly causes of memory leak, per example:
 - Global variables
 - Event listeners
 - setInterval functions
+
+<a name="javascript-runtime"></a>
+
+## Javascript runtime
+
+Generally the common javascript code will run on Call Stack memory and browser functions (derived from the object **window**) will run on the Web API (what means this kinda code will run asynchronously).
+
+Example of Web API asynchronous functions: ```fetch, setTimeout```.
+
+So if we run the following code:
+```js
+console.log(1) // first
+
+setTimeout(() => console.log(2), 3000) // third
+
+console.log(3) // second
+```
+
+- The ```console.log(1)``` gets into the Call Stack and gets executed.
+- The ```setTimeout(() => console.log(2), 3000)``` gets into the Web API.
+- The ```console.log(3)``` gets into the Call Stack and gets executed.
+- After 3s the ```setTimeout(() => console.log(2), 3000)``` gets into the Callback Queue.
+- The Callback Queue checks if the Call Stack is empty and if the response is **yes** the ```setTimeout(() => console.log(2), 3000)``` goes to Call Stack and ```console.log(2)``` gets executed.
