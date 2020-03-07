@@ -118,3 +118,30 @@ console.log(3) // second
 - The ```console.log(3)``` gets into the Call Stack and gets executed.
 - After 3s the ```setTimeout(() => console.log(2), 3000)``` gets into the Callback Queue.
 - The Callback Queue checks if the Call Stack is empty and if the response is **yes** the ```setTimeout(() => console.log(2), 3000)``` goes to Call Stack and ```console.log(2)``` gets executed.
+
+## Hoisting
+
+A hoist occurs when we call something before defining it and it works well. It happens because the Javascript Engine reads all code during the creation phase and executes it later. Below you can see an example of hoisting:
+```js
+console.log(lastName) // Prints 'mota'
+var lastName = "mota"
+
+console.log(getFirstName()) // Prints 'guilherme'
+function getFirstName() {
+	return "guilherme"
+}
+```
+
+If you want to avoid hoisting, you can do the following:
+```js
+console.log(firstName) // Error 'firstName' is not defined'
+const firstName = "guilherme"
+
+console.log(lastName) // Error 'lastName' is not defined'
+let lastName = "mota"
+
+console.log(getNumber()) // Error 'getNumber' is not defined'
+(function getNumber() {
+		return 1
+})
+```
