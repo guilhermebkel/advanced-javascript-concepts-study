@@ -8,6 +8,7 @@
 - [ Garbage collection ](#garbage-collection)
 - [ Main causes of memory leak ](#main-causes-of-memory-leak)
 - [ Javascript runtime ](#javascript-runtime)
+- [ Hoisting ](#hoisting)
 
 <a name="javascript-foundation"></a>
 
@@ -119,9 +120,11 @@ console.log(3) // second
 - After 3s the ```setTimeout(() => console.log(2), 3000)``` gets into the Callback Queue.
 - The Callback Queue checks if the Call Stack is empty and if the response is **yes** the ```setTimeout(() => console.log(2), 3000)``` goes to Call Stack and ```console.log(2)``` gets executed.
 
+<a name="hoisting"></a>
+
 ## Hoisting
 
-A hoist occurs when we call something before defining it and it works well. It happens because the Javascript Engine reads all code during the creation phase and executes it later. Below you can see an example of hoisting:
+A hoist occurs when we call a variable/function before defining it (and it works without errors), because the Javascript Engine reads all code during the creation phase, asks for some space on the heap memory to put some declared variables/functions (in order to improve first time execution speed) and then executes it. Below you can see an example of hoisting:
 ```js
 console.log(lastName) // Prints 'mota'
 var lastName = "mota"
