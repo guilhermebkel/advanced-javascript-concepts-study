@@ -12,6 +12,7 @@
 - [ Function Invocation ](#function-invocation)
 - [ Strict Mode ](#strict-mode)
 - [ Block scope ](#block-scope)
+- [ Manipulating 'this' keyword ](#manipulating-this-keyword)
 
 <a name="javascript-foundation"></a>
 
@@ -221,4 +222,34 @@ if (5 > 4) {
 }
 console.log(a)
 
+```
+
+<a name="manipulating-this-keyword"></a>
+
+## Manipulating 'this' keyword
+
+When dealing with **this** keyword, we have the following methods (that are created during the function instancing): **call, apply, bind**.
+
+```js
+const wizard = {
+	name: "Merlin",
+	health: 100,
+	heal(firstHp, secondHp) {
+		this.health += firstHp + secondHp;
+	}
+}
+
+const archer = {
+	name: "Robin Hood",
+	health: 30
+}
+
+// Use function 'heal' of wizard on archer
+// passing '100' as the function argument
+wizard.heal.call(archer, 100, 100) // Heals by 200
+wizard.heal.apply(archer, [100, 100]) // Heals by 200
+
+// Returns the updated method, without executing it
+archer.heal = wizard.heal.bind(archer, 100)
+archer.heal(100) // Heals archer by 200 hp
 ```
