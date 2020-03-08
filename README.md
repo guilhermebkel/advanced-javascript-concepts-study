@@ -9,6 +9,7 @@
 - [ Main causes of memory leak ](#main-causes-of-memory-leak)
 - [ Javascript runtime ](#javascript-runtime)
 - [ Hoisting ](#hoisting)
+- [ Function Invocation ](#function-invocation)
 
 <a name="javascript-foundation"></a>
 
@@ -147,4 +148,22 @@ console.log(getNumber()) // Error 'getNumber' is not defined'
 (function getNumber() {
 		return 1
 })
+```
+
+<a name="function-invocation"></a>
+
+## Function Invocation
+
+We can define a function as an expression or a declaration. The main difference between them is that **Function Expressions** gets defined during the code execution and **Function Declarations** gets defined during the code parsing.
+
+```js
+// Function Expression
+const printName = () => {
+	console.log("Guilherme")
+}
+
+// Function Declaration
+function printLastName() {
+	console.log("Mota")
+}
 ```
