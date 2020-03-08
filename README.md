@@ -10,6 +10,8 @@
 - [ Javascript runtime ](#javascript-runtime)
 - [ Hoisting ](#hoisting)
 - [ Function Invocation ](#function-invocation)
+- [ Strict Mode ](#strict-mode)
+- [ Block scope ](#block-scope)
 
 <a name="javascript-foundation"></a>
 
@@ -168,6 +170,8 @@ function printLastName() {
 }
 ```
 
+<a name="strict-mode"></a>
+
 ## Strict mode
 
 If we run the following code, it will not trigger any error:
@@ -190,4 +194,31 @@ function test() {
 }
 
 test() // Triggers error: 'tested is not defined'
+```
+
+<a name="block-scope"></a>
+
+## Block scope
+
+When we create some statement using brackets, we're only able to access variables if they are declared with 'var' keyword
+
+```js
+// Works
+if (5 > 4) {
+	var a = 1
+}
+console.log(a)
+
+// Does not work
+if (5 > 4) {
+	const a = 1
+}
+console.log(a)
+
+// Does not work
+if (5 > 4) {
+	let a = 1
+}
+console.log(a)
+
 ```
