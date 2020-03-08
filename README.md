@@ -167,3 +167,27 @@ function printLastName() {
 	console.log("Mota")
 }
 ```
+
+## Strict mode
+
+If we run the following code, it will not trigger any error:
+
+```js
+function test() {
+	tested = 1
+}
+
+test() // Runs without errors
+```
+
+In order to prevent it from happening, we can add the 'use strict' keyword that will force some ECMAScript validations:
+
+```js
+'use strict'
+
+function test() {
+	tested = 1
+}
+
+test() // Triggers error: 'tested is not defined'
+```
