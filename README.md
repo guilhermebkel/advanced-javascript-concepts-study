@@ -154,7 +154,7 @@ console.log(getNumber()) // Error 'getNumber' is not defined'
 
 ## Function Invocation
 
-We can define a function as an expression or a declaration. The main difference between them is that **Function Expressions** gets defined during the code execution and **Function Declarations** gets defined during the code parsing.
+We can define a function as an expression or a declaration. The main difference between them is that **Function Expressions** get defined during the code execution and **Function Declarations** get defined during the code parsing.
 
 ```js
 // Function Expression
