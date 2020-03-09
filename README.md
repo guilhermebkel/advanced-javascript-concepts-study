@@ -14,6 +14,7 @@
 - [ Block scope ](#block-scope)
 - [ Manipulating 'this' keyword ](#manipulating-this-keyword)
 - [ Javascript types ](#javascript-types)
+- [ Type coercion ](#type-coercion)
 
 <a name="javascript-foundation"></a>
 
@@ -283,4 +284,32 @@ true.toString() // 'true'
 
 // Because the above is the same as using the boolean wrapper that is an object
 Boolean(true).toString() // 'true'
+```
+
+Obs: If a data is explicitly of type **object** (usually we can guarantee it using the 'typeof' keyword), it will be instanced on **Heap Memory** and so **Passed by Reference** to methods.
+```js
+const firstCat = { name: "Bob" }
+
+const secondCat = firstCat
+
+secondCat.name = "Ana"
+
+console.log(firstCat.name) // 'Ana'
+console.log(secondCat.name) // 'Ana'
+```
+
+<a name="type-coercion"></a>
+
+## Type coercion
+
+Type coercion means the own language converts types to make use of statements, etc.
+
+Per example, everything in Javascript is considered **true** except for the following:
+```js
+false
+0
+""
+null
+undefined
+NaN
 ```
