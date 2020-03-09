@@ -13,6 +13,7 @@
 - [ Strict Mode ](#strict-mode)
 - [ Block scope ](#block-scope)
 - [ Manipulating 'this' keyword ](#manipulating-this-keyword)
+- [ Javascript types ](#javascript-types)
 
 <a name="javascript-foundation"></a>
 
@@ -252,4 +253,34 @@ wizard.heal.apply(archer, [100, 100]) // Heals by 200
 // Returns the updated method, without executing it
 archer.heal = wizard.heal.bind(archer, 100)
 archer.heal(100) // Heals archer by 200 hp
+```
+
+<a name="javascript-types"></a>
+
+## Javascript types
+
+- Primitive Types: Usually represents a single type on memory
+```js
+typeof 5 // number
+typeof true // boolean
+typeof "mota" // string
+typeof undefined // undefined
+typeof null // object
+typeof Symbol("mota") // symbol
+```
+
+- Non Primitive Types: Does not represent a type on memory
+```js
+typeof {} // object
+typeof [] // object
+typeof function(){} // function (but it is actually an object)
+```
+
+Even with these multiple types, we can say that **almost everything in Javascript** is an **object**, since the wrappers used to create other types are objects, per example:
+```js
+// true has property to string even being an boolean
+true.toString() // 'true'
+
+// Because the above is the same as using the boolean wrapper that is an object
+Boolean(true).toString() // 'true'
 ```
