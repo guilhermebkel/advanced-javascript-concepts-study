@@ -15,6 +15,7 @@
 - [ Manipulating 'this' keyword ](#manipulating-this-keyword)
 - [ Javascript types ](#javascript-types)
 - [ Type coercion ](#type-coercion)
+- [ Closures and Memory ](#closures-and-memory)
 
 <a name="javascript-foundation"></a>
 
@@ -312,4 +313,49 @@ false
 null
 undefined
 NaN
+```
+
+<a name="closures-and-memory"></a>
+
+## Closures and Memory
+
+We're able to reuse functions without having to create it in memory after every call. It can be done with help of **closure**.
+
+```js
+function heavyDuty(index) {
+	const bigArray = new Array(7000).fill("mota")
+
+	console.log("Created: heavyDuty")
+
+	return bigArray[index]
+}
+
+function heavyDutyClosure() {
+	const bigArray = new Array(7000).fill("mota")
+
+	console.log("Created: heavyDutyClosure")
+
+	return function(index) {
+		return bigArray[index]
+	}
+}
+
+heavyDuty(500)
+heavyDuty(600)
+heavyDuty(700)
+
+const getHeavyDutyClosure = heavyDutyClosure()
+
+getHeavyDutyClosure(500)
+getHeavyDutyClosure(600)
+getHeavyDutyClosure(700)
+
+/*
+ * The console.log will look like:
+ *
+ * Created: heavyDuty
+ * Created: heavyDuty
+ * Created: heavyDuty
+ * Created: heavyDutyClosure
+ */
 ```
