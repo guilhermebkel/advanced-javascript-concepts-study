@@ -359,3 +359,62 @@ getHeavyDutyClosure(700)
  * Created: heavyDutyClosure
  */
 ```
+
+<a name="constructor-functions"></a>
+
+## Constructor Functions
+
+Since functions in Javascript has inherit its prototype from object (what makes them a special type of object), we can create objects by using the "new" keyword on function as you can see below:
+
+```js
+function Elf(name, weapon) {
+	this.name = name
+	this.weapon = weapon
+}
+
+Elf.prototype.attack = function() {
+	return "Attack with " + this.weapon
+}
+
+const peter = new Elf("Peter", "stones")
+console.log(peter.attack()) // output: Attack with stones
+
+const sam = new Elf("Sam", "fire")
+console.log(sam.attack()) // output: Attack with fire
+
+/**
+ * In case we want to use a function inside a method while accessing
+ * the "this" keyword, we have to add the "this" to a new variable
+ * since a common function in Javascript is considered an object
+ * and the "this" keyword inside it will refer to this function itself.
+ */
+Elf.prototype.build = function() {
+	const self = this
+
+	function building() {
+		return self.name + "builds a house"
+	}
+
+	return building()
+}
+```
+
+<a name="ways-to-use-this-keyword"></a>
+
+## Ways to use this keyword
+
+```js
+function Person(name, age) {
+	this.name = name
+	this.age = age
+}
+const person1 = new Person("Xavier", 15)
+
+const person2 = {
+	name: "Karen",
+	age: 40,
+	hi() {
+		console.log("hi" + this.name)
+	}
+}
+```
