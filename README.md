@@ -16,6 +16,7 @@
 - [ Javascript types ](#javascript-types)
 - [ Type coercion ](#type-coercion)
 - [ Closures and Memory ](#closures-and-memory)
+- [ Constructor Functions ](#constructor-functions)
 
 <a name="javascript-foundation"></a>
 
@@ -397,24 +398,17 @@ Elf.prototype.build = function() {
 
 	return building()
 }
-```
-
-<a name="ways-to-use-this-keyword"></a>
-
-## Ways to use this keyword
-
-```js
-function Person(name, age) {
-	this.name = name
-	this.age = age
-}
-const person1 = new Person("Xavier", 15)
-
-const person2 = {
-	name: "Karen",
-	age: 40,
-	hi() {
-		console.log("hi" + this.name)
+/**
+ * We can make a simple workaround to the problem above by using
+ * arrow functions, since them, different of common functions,
+ * don't create an own scope, so it inherits the scope from the
+ * parent function.
+ */
+Elf.prototype.build = function() {
+	const building = () => {
+		return this.name + "builds a house"
 	}
+
+	return building()
 }
 ```
