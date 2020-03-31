@@ -17,6 +17,7 @@
 - [ Type coercion ](#type-coercion)
 - [ Closures and Memory ](#closures-and-memory)
 - [ Constructor Functions ](#constructor-functions)
+- [ Pure Functions ](#pure-functions)
 
 <a name="javascript-foundation"></a>
 
@@ -411,4 +412,52 @@ Elf.prototype.build = function() {
 
 	return building()
 }
+```
+
+<a name="pure-functions"></a>
+
+## Pure Functions
+
+We call pure functions the ones which don't cause side effects all around the code. They are the core of **functional programming**.
+
+```js
+// Cause side-effects
+const array = [1, 2, 3]
+function removeLastItem(arr) {
+	arr.pop()
+}
+removeLastItem(array)
+console.log(array) // [1, 2]
+
+// Doesn't cause any side-effects
+const array = [1, 2, 3]
+function removeLastItem(arr) {
+	const copiedArray = [...arr]
+	copiedArray.pop()
+	return copiedArray
+}
+console.log(removeLastItem(array)) // [1, 2]
+console.log(array) // [1, 2, 3]
+```
+
+## Closure
+
+Closure is such a way to create HOF (High order functions) that share **state** (variables, methods, etc) with **children functions**, what means that the children can change state of its parents.
+
+```js
+const closure = function() {
+	let count = 0
+
+	return function increment() {
+		count++
+		
+		console.log(count)
+	}
+}
+
+const incrementFunction = closure()
+
+incrementFunction() // 1
+incrementFunction() // 2
+incrementFunction() // 3
 ```
