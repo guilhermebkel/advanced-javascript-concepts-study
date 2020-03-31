@@ -18,6 +18,7 @@
 - [ Closures and Memory ](#closures-and-memory)
 - [ Constructor Functions ](#constructor-functions)
 - [ Pure Functions ](#pure-functions)
+- [ Closure Functions ](#closure-functions)
 
 <a name="javascript-foundation"></a>
 
@@ -440,7 +441,9 @@ console.log(removeLastItem(array)) // [1, 2]
 console.log(array) // [1, 2, 3]
 ```
 
-## Closure
+<a name="closure-functions"></a>
+
+## Closure Functions
 
 Closure is such a way to create HOF (High order functions) that share **state** (variables, methods, etc) with **children functions**, what means that the children can change state of its parents.
 
