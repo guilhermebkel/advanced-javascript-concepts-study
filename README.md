@@ -145,15 +145,15 @@ console.log("Call Stack / Memory Heap") // First
 3. The ```console.log("Call Stack / Memory Heap")``` gets into the **Call Stack** and gets executed.
 
 4. The **Event Loop** do the following:
-	1. Call Stack is empty?
-		1. **True**: Is there any job on **Job Queue**?
-			1. **True**: ```Promise.resolve(console.log("Job Queue - Microtask Queue"))``` is moved from the **Job Queue** to the **Call Stack** and gets executed.
+	- Is the Call Stack empty?
+		- **True**: Is there any job on **Job Queue**?
+			- **True**: ```Promise.resolve(console.log("Job Queue - Microtask Queue"))``` is moved from the **Job Queue** to the **Call Stack** and gets executed.
 
 5. The **Event Loop** do the following:
-	1. Call Stack is empty?
-		1. **True**: Is there any job on **Job Queue**?
-			1. **False**: Is there any job on **Web API**?
-				1. **True**: ```setTimeout(() => console.log("Callback Queue - Task Queue"), 0)``` is moved from the **Web API** to the **Callback Queue** and gets executed.
+	- Is the Call Stack empty?
+		- **True**: Is there any job on **Job Queue**?
+			- **False**: Is there any job on **Web API**?
+				- **True**: ```setTimeout(() => console.log("Callback Queue - Task Queue"), 0)``` is moved from the **Web API** to the **Callback Queue** and gets executed.
 
 
 <a name="hoisting"></a>
