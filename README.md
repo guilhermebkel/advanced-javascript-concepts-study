@@ -111,24 +111,50 @@ In generally there are mainly causes of memory leak, per example:
 
 ## Javascript runtime
 
-Generally the common javascript code will run on Call Stack memory and browser functions (derived from the object **window**) will run on the Web API (what means this kinda code will run asynchronously).
+Generally in Javascript we have three different environments which are needed to run the code:
 
-Example of Web API asynchronous functions: ```fetch, setTimeout```.
+1. **Call Stack / Memory Heap:** Common javascript code
+```js
+console.log("Call Stack / Memory Heap")
+```
+
+2. **Job Queue - Microtask Queue:** Asynchronous code
+```js
+Promise.resolve(console.log("Job Queue - Microtask Queue"))
+```
+
+3. **Callback Queue - Task Queue:** Browser functions derived from the global object
+```js
+setTimeout(() => console.log("Callback Queue - Task Queue"), 0)
+```
+
 
 So if we run the following code:
 ```js
-console.log(1) // first
+setTimeout(() => console.log("Callback Queue - Task Queue"), 0) // Third
 
-setTimeout(() => console.log(2), 3000) // third
+Promise.resolve(console.log("Job Queue - Microtask Queue")) // Second
 
-console.log(3) // second
+console.log("Call Stack / Memory Heap") // First
 ```
 
-- The ```console.log(1)``` gets into the Call Stack and gets executed.
-- The ```setTimeout(() => console.log(2), 3000)``` gets into the Web API.
-- The ```console.log(3)``` gets into the Call Stack and gets executed.
-- After 3s the ```setTimeout(() => console.log(2), 3000)``` gets into the Callback Queue.
-- The Callback Queue checks if the Call Stack is empty and if the response is **yes** the ```setTimeout(() => console.log(2), 3000)``` goes to Call Stack and ```console.log(2)``` gets executed.
+1. The ```setTimeout(() => console.log("Callback Queue - Task Queue"), 0)``` gets into the **Web API**.
+
+2. The ```Promise.resolve(console.log("Job Queue - Microtask Queue"))``` gets into the **Job Queue**.
+
+3. The ```console.log("Call Stack / Memory Heap")``` gets into the **Call Stack** and gets executed.
+
+4. The **Event Loop** do the following:
+	1. Call Stack is empty?
+		1. **True**: Is there any job on **Job Queue**?
+			1. **True**: ```Promise.resolve(console.log("Job Queue - Microtask Queue"))``` is moved from the **Job Queue** to the **Call Stack** and gets executed.
+
+5. The **Event Loop** do the following:
+	1. Call Stack is empty?
+		1. **True**: Is there any job on **Job Queue**?
+			1. **False**: Is there any job on **Web API**?
+				1. **True**: ```setTimeout(() => console.log("Callback Queue - Task Queue"), 0)``` is moved from the **Web API** to the **Callback Queue** and gets executed.
+
 
 <a name="hoisting"></a>
 
