@@ -1,4 +1,4 @@
-# advanced-javascript-concepts
+# advanced-javascript-concepts-study
 :dragon_face: A deep study about advanced javascript concepts
 
 ## Summary
